@@ -1,0 +1,26 @@
+{{#if tokens}}
+<form>
+    <div class="mb-3">
+    <label for="sender" class="form-label">From</label>
+    <input type="email" class="form-control" id="sender" disabled="true" value="{{userEmail}}">
+    </div>
+    <div class="mb-3">
+    <label for="receiver" class="form-label">To</label>
+    <input type="email" class="form-control" id="receiver" placeholder="name@example.com">
+    </div>
+    <div class="mb-3">
+    <label for="subject" class="form-label">Subject</label>
+    <input type="email" class="form-control" id="subject" placeholder="Subject">
+    </div>
+    <div class="mb-3">
+    <label for="content" class="form-label">Content</label>
+    <textarea class="form-control" id="content" rows="3"></textarea>
+    </div>
+    <button class="btn google-email-send-btn">Send</button>
+</form>
+{{else}}
+<div>Please log in with google to use email service</div>
+<a href="/api/google/login">Google Login</a>
+{{/if}}
+
+<script src="/js/nodemailer.js"></script>
