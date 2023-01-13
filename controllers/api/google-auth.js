@@ -9,10 +9,10 @@ require('dotenv').config()
 const oauth2Client = new OAuth2(
   process.env.CLIENT_ID,
   process.env.CLIENT_SECRET, 
-  "http://localhost:3001/api/google/callback" // YOUR_REDIRECT_URL
+  process.env.REDIRECT_URL, // YOUR_REDIRECT_URL
 );
 
-// Access scopes for read-only Drive activity.
+// Access scopes for google mail service.
 const scopes = [
   'https://mail.google.com/'
 ];
@@ -32,6 +32,8 @@ router.get('/login', (req, res) => {
     res.redirect(authorizationUrl)
 });
 
+// After varifying your credential, redirecting to here with code
+// It will retrieve tokens from the code.
 router.get('/callback/', async (req, res) => {
     const code = req.query.code;
     // Should use await keyword to get tokens properly.
