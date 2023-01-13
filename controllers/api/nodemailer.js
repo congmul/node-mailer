@@ -4,8 +4,7 @@ require('dotenv').config()
 
 // '/api/nodemailer/send'
 router.post('/send', async (req, res) => {
-    const {sender, receiver, subject, content} = req.body;
-    console.log({sender, receiver, subject, content});
+    const { receiver, subject, content} = req.body;
     const {access_token, refresh_token} = req.session.tokens;
     const email = req.session.googleEmail
     const transporter = nodemailer.createTransport({
@@ -27,9 +26,7 @@ router.post('/send', async (req, res) => {
             to: receiver,  // ["example@email.com", "example2@email.com"]
             from: email
         });
-
         res.status(200).json("Sent");
-
     }catch(error){        
         res.status(500).json(error);
     };

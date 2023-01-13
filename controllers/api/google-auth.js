@@ -34,12 +34,13 @@ router.get('/login', (req, res) => {
 
 router.get('/callback/', async (req, res) => {
     const code = req.query.code;
+    // Should use await keyword to get tokens properly.
     let { tokens } = await oauth2Client.getToken(code);
     oauth2Client.setCredentials(tokens);
-    var user = jwt_decode(tokens.id_token);
+    var googleUserInfo = jwt_decode(tokens.id_token);
     req.session.save(() => {
         req.session.tokens = tokens;
-        req.session.googleEmail = user.email;
+        req.session.googleEmail = googleUserInfo.email;
         res.redirect('/send-email');
     })
 })

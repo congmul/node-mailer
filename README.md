@@ -5,6 +5,7 @@
 - Create Project in Google Cloud
 - Enable Gmail API
 - Create Credentials: OAuth client ID
-- Add Authorized JavaScript origins: "http://localhost"
-- Add Authorized redirect URI: "http://localhost:3001/google/callback"
+- In Client ID Credential
+- - Add Authorized JavaScript origins: "http://localhost"
+- - Add Authorized redirect URI: "http://localhost:3001/google/callback"
 
